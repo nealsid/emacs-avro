@@ -24,15 +24,20 @@
 ;; "Class"-like keywords.  Keep the existing ones for things like
 ;; enum.
 (c-lang-defconst c-class-decl-kwds
-  avdl (append '("record" "error" "protocol") 
-	       (c-lang-const c-class-decl-kwds c++)))
-		
+  avdl '("record" "error" "protocol") )
+
+;; old code, not working for emacs 25
+;;(c-lang-defconst c-class-decl-kwds
+;;  avdl (append '("record" "error" "protocol") 
+;;	       (c-lang-const c-class-decl-kwds c++)))
+
 ;; The expresison after ENUM isn't indented correctly if CC-mode
 ;; considers it a block decl with vars (because it searches for a
 ;; semicolon in those blocks).  Unfortunately not treating enum like
 ;; this means we lose font lock for enum constants, for now.
 (c-lang-defconst c-block-decls-with-vars
-  avdl (remove "enum" (c-lang-const c-block-decls-with-vars c++)))
+  avdl '("class" "struct" "union" "typedef") )
+;;(remove "enum" (c-lang-const c-block-decls-with-vars c++)))
 
 (defcustom avdl-font-lock-extra-types nil
   "*List of extra types (aside from the type keywords) to recognize
